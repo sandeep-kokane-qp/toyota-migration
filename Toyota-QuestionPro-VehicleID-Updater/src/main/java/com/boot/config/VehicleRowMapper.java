@@ -14,8 +14,8 @@ public class VehicleRowMapper implements RowMapper<Vehicle> {
 	@Override
 	public Vehicle mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Vehicle vehicle = new Vehicle();
-		vehicle.setVehicleID(rs.getInt("VehicleID"));
-		vehicle.setVin(rs.getString("VIN"));
+		vehicle.setVehicleID(rs.getInt("vehicleId"));
+		vehicle.setSrcVehicleSalesDataID(rs.getInt("srcVehicleSalesDataID"));
 		return vehicle;
 	}
 }

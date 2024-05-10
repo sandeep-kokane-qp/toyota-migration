@@ -8,7 +8,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Vehicle {
-	private String vin;
+
+	private Integer srcVehicleSalesDataID;
 	private Integer vehicleID;
 
 }

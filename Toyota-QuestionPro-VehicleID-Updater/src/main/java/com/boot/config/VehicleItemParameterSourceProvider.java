@@ -12,9 +12,9 @@ public class VehicleItemParameterSourceProvider implements ItemSqlParameterSourc
 
 	@Override
 	public SqlParameterSource createSqlParameterSource(Vehicle item) {
-		SqlParameterSource source = new MapSqlParameterSource().addValue("vehicleID", item.getVehicleID())
-				.addValue("vin", item.getVin());
-		return source;
+		return new MapSqlParameterSource().addValue("vehicleID", item.getVehicleID()).addValue("srcVehicleSalesDataID",
+				item.getSrcVehicleSalesDataID());
+
 	}
 
 }

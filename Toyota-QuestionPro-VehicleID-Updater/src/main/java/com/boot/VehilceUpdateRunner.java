@@ -21,19 +21,14 @@ public class VehilceUpdateRunner implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		// TODO Auto-generated method stub
-
 		JobParameters jobParameters = new JobParametersBuilder().addLong("startAt", System.currentTimeMillis())
 				.toJobParameters();
 		try {
 			log.info("starting job");
 			jobLauncher.run(job, jobParameters);
 		} catch (Exception e) {
-
 			e.printStackTrace();
 			log.error("" + e.getStackTrace());
 		}
-
 	}
-
 }
