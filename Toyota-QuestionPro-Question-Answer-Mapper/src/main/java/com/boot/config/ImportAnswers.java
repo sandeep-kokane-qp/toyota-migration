@@ -1,33 +1,37 @@
 package com.boot.config;
 
-import com.boot.qp.entity.Answer;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
+
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
-import java.util.List;
+import com.boot.qp.entity.Answer;
+import com.boot.qp.repo.AnswerRepo;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 //@Component
 @Slf4j
 @RequiredArgsConstructor
+@Order(2)
 public class ImportAnswers implements ApplicationRunner {
 
-    @Override
-    public void run(ApplicationArguments args) throws Exception {
-        log.debug("ImportAnswers.run");
+	private final AnswerRepo answerRepo;
 
-        Resource resource = new ClassPathResource("toyota-survey-answer.xlsx");
+	@Override
+	public void run(ApplicationArguments args) throws Exception {
+		log.debug("ImportAnswers.run");
 
-        List<Answer> answerList = ExcelUtility.excelAnswersToList(resource.getInputStream());
-        for (Answer answer : answerList) {
-            System.out.println(answer);
-        }
+		Resource resource = new ClassPathResource("toyota-survey-answer.xlsx");
 
-        System.out.println(answerList.size());
-//        questionRepo.saveAll(questionList);
-//        System.out.println("done");
-    }
+		List<Answer> answerList = ExcelUtility.excelAnswersToList(resource.getInputStream());
+
+		System.out.println(answerList.size());
+		answerRepo.saveAll(answerList);
+		log.info("done");
+	}
 }
