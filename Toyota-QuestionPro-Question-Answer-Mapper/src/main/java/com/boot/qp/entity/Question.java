@@ -16,6 +16,9 @@ public class Question {
 
 	@Id
 	private Integer id;
+	private Integer surveyId;
+	private String qText;
+	private String code;
 	private Integer categoryId;
 	private Integer questionId;
 

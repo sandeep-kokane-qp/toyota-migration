@@ -1,4 +1,4 @@
-package com.boot.mapper;
+package com.boot.config;
 
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

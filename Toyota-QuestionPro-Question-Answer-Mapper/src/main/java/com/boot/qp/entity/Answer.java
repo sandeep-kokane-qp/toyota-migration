@@ -16,5 +16,9 @@ public class Answer {
 
 	@Id
 	private Integer id;
+	private Integer surveyId;
+	private String code;
+	private Integer qId;
+	private String aText;
 
 }
