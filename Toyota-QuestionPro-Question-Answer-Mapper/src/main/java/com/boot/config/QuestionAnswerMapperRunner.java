@@ -36,7 +36,7 @@ public class QuestionAnswerMapperRunner implements ApplicationRunner {
 
 		// program to map all the question
 
-		// log all the question that do not have categoryid and question id
+		// log all the question that do not have category id and question id
 
 	}
 
