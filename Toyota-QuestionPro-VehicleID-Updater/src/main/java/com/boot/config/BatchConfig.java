@@ -51,8 +51,8 @@ public class BatchConfig {
 	private PagingQueryProvider createQueryProvider() {
 		SqlServerPagingQueryProvider queryProvider = new SqlServerPagingQueryProvider();
 		queryProvider.setSelectClause("srcVehicleSalesDataID, vh.VehicleID AS vehicleId");
-		queryProvider.setFromClause("VehicleSales.toyotapqs.srcVehicleSalesData AS src "
-				+ " JOIN VehicleSales.ods.Vehicle AS vh ON vh.VIN = src.VIN AND vh.ProgramID=36");
+		queryProvider.setFromClause("Qpro_VehicleSales.toyotapqs.srcVehicleSalesData AS src "
+				+ " JOIN Qpro_VehicleSales.ods.Vehicle AS vh ON vh.VIN = src.VIN AND vh.ProgramID=36");
 		queryProvider.setWhereClause("WHERE srcVehicleSalesDataID > 0");
 
 		Map<String, Order> sortKeys = new HashMap<String, Order>();
@@ -62,26 +62,10 @@ public class BatchConfig {
 		return queryProvider;
 	}
 
-	/*
-	 * @Bean ItemReader<Vehicle> itemReader() { log.info("BatchConfig-itemReader");
-	 * 
-	 * String sqlString =
-	 * "SELECT src.srcVehicleSalesDataID as srcSalesDataId, src.VIN as vin, vh.VehicleID as vehicleId"
-	 * + "  FROM VehicleSales.toyotapqs.srcVehicleSalesData src" +
-	 * "  JOIN VehicleSales.ods.Vehicle vh ON vh.VIN = src.VIN AND vh.ProgramID=36"
-	 * + " WHERE src.srcVehicleSalesDataID > 0 " +
-	 * " ORDER BY src.srcVehicleSalesDataID ASC";
-	 * 
-	 * return new
-	 * JdbcCursorItemReaderBuilder<Vehicle>().name("jdbc-batch-vehicle-item-reader")
-	 * .dataSource(dataSource) .sql(sqlString).rowMapper(vehicleRowMapper).build();
-	 * }
-	 */
-
 	@Bean
 	ItemWriter<Vehicle> itemWriter() {
 		log.info("BatchConfig-itemWriter");
-		String sqlString = "UPDATE VehicleSales.toyotapqs.srcVehicleSalesData" + " SET VehicleID = :vehicleID"
+		String sqlString = "UPDATE Qpro_VehicleSales.toyotapqs.srcVehicleSalesData" + " SET VehicleID = :vehicleID"
 				+ " WHERE srcVehicleSalesDataID = :srcVehicleSalesDataID";
 
 		return new JdbcBatchItemWriterBuilder<Vehicle>().dataSource(dataSource).sql(sqlString)
